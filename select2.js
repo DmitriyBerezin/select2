@@ -203,7 +203,6 @@ the specific language governing permissions and limitations under the Apache Lic
         ctx = ctx || undefined;
         var timeout;
         return function () {
-            debugger
             var args = arguments;
             window.clearTimeout(timeout);
             timeout = window.setTimeout(function() {
