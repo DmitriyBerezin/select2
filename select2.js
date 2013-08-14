@@ -203,6 +203,7 @@ the specific language governing permissions and limitations under the Apache Lic
         ctx = ctx || undefined;
         var timeout;
         return function () {
+            debugger
             var args = arguments;
             window.clearTimeout(timeout);
             timeout = window.setTimeout(function() {
@@ -298,10 +299,13 @@ the specific language governing permissions and limitations under the Apache Lic
     function ajax(options) {
         var timeout, // current scheduled but not yet executed request
             requestSequence = 0, // sequence used to drop out-of-order responses
-            handler = null,
-            quietMillis = options.quietMillis || 100;
+            handler = null
 
         return function (query) {
+            var quietMillis = options.quietMillis || 100;
+            if (!query.term)
+                quietMillis = 100;
+            console.log(quietMillis);
             window.clearTimeout(timeout);
             timeout = window.setTimeout(function () {
                 requestSequence += 1; // increment the sequence
